@@ -6,9 +6,33 @@
     <groupId>com.switajski</groupId>
     <artifactId>assert-snapshot</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>assert-snapshot</name>
-    <url>http://maven.apache.org</url>
+    <description>A Java library for snapshot testing using AssertJ assertions</description>
+    <url>https://github.com/switajski/snapshot-assert</url>
+    
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <id>switajski</id>
+            <name>Marek Switajski</name>
+            <email>marek.switajski@example.com</email>
+        </developer>
+    </developers>
+    
+    <scm>
+        <url>https://github.com/switajski/snapshot-assert</url>
+        <connection>scm:git:git://github.com/switajski/snapshot-assert.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/switajski/snapshot-assert.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -22,4 +46,75 @@
             <version>4.0.0-M1</version>
         </dependency>
     </dependencies>
+    <build>
+		<plugins>
+            <plugin>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+				<version>0.4.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<publishingServerId>ossrh</publishingServerId>
+					<tokenAuth>true</tokenAuth>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.3</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<passphraseServerId>ossrh</passphraseServerId>
+				</configuration>
+			</plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 </project>

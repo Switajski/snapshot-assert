@@ -1,9 +1,17 @@
-# SnapshotAssert
+## Project Overview
 
-To update snapshots continuously while developing, use the UPDATE_SNAPSHOT environment variable
-```bash
-export UPDATE_SNAPSHOT=true
-```
+This is a Java library that provides snapshot assertion functionality for testing. The core class `SnapshotAssert` extends AssertJ's `AbstractCharSequenceAssert` to enable snapshot-based testing where test outputs are captured and compared against saved snapshots.
+
+## Snapshot Testing Workflow
+
+The library supports snapshot testing through environment variable control:
+
+- **UPDATE_SNAPSHOT=true**: Updates snapshot files instead of asserting against them
+- **Normal mode**: Compares actual output against existing snapshot files
+
+Key methods in `SnapshotAssert`:
+- `isEqualToLastCommit(Path file)`: Main assertion method that compares against snapshot file
+- `updateSnapshot(Path file)`: Explicitly updates snapshot and fails test (for development workflow)
 
 # Testing using Snapshots
 

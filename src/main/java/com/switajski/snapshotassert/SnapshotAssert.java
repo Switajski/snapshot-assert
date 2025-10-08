@@ -27,7 +27,7 @@ public class SnapshotAssert extends AbstractCharSequenceAssert<SnapshotAssert, S
    * <ul>
    *   <li>manually
    *   <li>by deleting given file and rerunning the test
-   *   <li>by using {@link com.puma.plm.hive.readmodel.utls.SnapshotAssert#updateSnapshot} and
+   *   <li>by using {@link #updateSnapshot} and
    *       rerunning the test
    * </ul>
    *
